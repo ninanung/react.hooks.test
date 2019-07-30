@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState, useMemo, useCallback, useRef} from 'react';
 import './App.css';
+
+const UseStateExample = () => {
+  const [test, setTest] = useState('initial value');
+
+  return (
+    <div>
+      <p>{test}</p>
+      <input onChange={(e) => {setTest(e.target.value)}} />
+    </div>
+  )
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UseStateExample />
     </div>
   );
 }
