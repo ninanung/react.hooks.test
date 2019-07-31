@@ -15,9 +15,13 @@ const UseStateExample = () => {
 const UseEffectExample = () => {
   const [test, setTest] = useState('initial value');
   const [test2, setTest2] = useState('initial value');
+
   useEffect(() => {
     console.log('state가 변경될 때 마다 호출!');
-  })
+    return () => {
+      console.log('모든 언마운트 시 호출!')
+    }
+  });
 
   useEffect(() => {
     console.log('test state에 대해서만 호출!')
@@ -28,7 +32,10 @@ const UseEffectExample = () => {
   }, [test2])
 
   useEffect(() => {
-    console.log('첫 렌더링에만 호출')
+    console.log('첫 렌더링에만 호출');
+    return () => {
+      console.log('마지막 언마운트 시 호출')
+    }
   }, [])
 
   return (
@@ -42,10 +49,13 @@ const UseEffectExample = () => {
 }
 
 function App() {
+  const [useEffectRender, setUseEffectRender] = useState(true);
+
   return (
     <div className="App">
       <UseStateExample />
-      <UseEffectExample />
+      {useEffectRender && <UseEffectExample />}
+      <button onClick={() => {setUseEffectRender(!useEffectRender)}}>마지막 언마운트 호출하기!</button>
     </div>
   );
 }
