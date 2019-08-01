@@ -48,6 +48,14 @@ const UseEffectExample = () => {
   )
 }
 
+const UseContextExample = () => {
+  return (
+    <div>
+
+    </div>
+  )
+}
+
 function App() {
   const [useEffectRender, setUseEffectRender] = useState(true);
 
@@ -56,6 +64,7 @@ function App() {
       <UseStateExample />
       {useEffectRender && <UseEffectExample />}
       <button onClick={() => {setUseEffectRender(!useEffectRender)}}>마지막 언마운트 호출하기!</button>
+      <UseContextExample />
     </div>
   );
 }
