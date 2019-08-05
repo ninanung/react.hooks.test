@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo, useCallback, useRef, useReducer, useContext} from 'react';
+import React, {useEffect, useState, useMemo, useCallback, useRef, useReducer, useContext, createContext} from 'react';
 import './App.css';
 
 const UseStateExample = () => {
@@ -48,10 +48,15 @@ const UseEffectExample = () => {
   )
 }
 
+const TestContext = createContext();
+const TestContext2 = createContext();
+
 const UseContextExample = () => {
+  const hello = useContext(TestContext);
+  const world = useContext(TestContext2);
   return (
     <div>
-
+      {hello + ' ' + world}
     </div>
   )
 }
@@ -64,7 +69,11 @@ function App() {
       <UseStateExample />
       {useEffectRender && <UseEffectExample />}
       <button onClick={() => {setUseEffectRender(!useEffectRender)}}>마지막 언마운트 호출하기!</button>
-      <UseContextExample />
+      <TestContext.Provider value='hello'>
+        <TestContext2.Provider value='world!'>
+          <UseContextExample />
+        </TestContext2.Provider>
+      </TestContext.Provider>
     </div>
   );
 }
