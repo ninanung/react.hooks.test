@@ -61,6 +61,14 @@ const UseContextExample = () => {
   )
 }
 
+const UseMemoExample = () => {
+  return (
+    <div>
+
+    </div>
+  )
+}
+
 function App() {
   const [useEffectRender, setUseEffectRender] = useState(true);
 
@@ -74,6 +82,7 @@ function App() {
           <UseContextExample />
         </TestContext2.Provider>
       </TestContext.Provider>
+      <UseMemoExample />
     </div>
   );
 }
