@@ -62,9 +62,22 @@ const UseContextExample = () => {
 }
 
 const UseMemoExample = () => {
+  const [number1, setNumber1] = useState('');
+  const [number2, setNumber2] = useState('');
+  const [sum, setSum] = useState('');
+
+  const check = (insert1, insert2, insert3) => {
+    console.log('sum이 변경될 때만 채점...');
+    if(parseInt(insert1) + parseInt(insert2) === parseInt(insert3)) return 'correct';
+    else return 'wrong';
+  }
+
+  const result = useMemo(() => check(number1, number2, sum), [sum])
+
   return (
     <div>
-
+      <input onChange={(e) => {setNumber1(e.target.value)}} /> + <input onChange={(e) => {setNumber2(e.target.value)}} /> = <input onChange={(e) => {setSum(e.target.value)}} />
+      {result}
     </div>
   )
 }
