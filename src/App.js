@@ -82,6 +82,22 @@ const UseMemoExample = () => {
   )
 }
 
+const UseCallbackExample = () => {
+  return (
+    <div>
+
+    </div>
+  )
+}
+
+const UseRefExample = () => {
+  return (
+    <div>
+
+    </div>
+  )
+}
+
 function App() {
   const [useEffectRender, setUseEffectRender] = useState(true);
 
@@ -96,6 +112,8 @@ function App() {
         </TestContext2.Provider>
       </TestContext.Provider>
       <UseMemoExample />
+      <UseCallbackExample />
+      <UseRefExample />
     </div>
   );
 }
