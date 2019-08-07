@@ -62,30 +62,65 @@ const UseContextExample = () => {
 }
 
 const UseMemoExample = () => {
-  const [number1, setNumber1] = useState('');
-  const [number2, setNumber2] = useState('');
-  const [sum, setSum] = useState('');
+  const [string, setString] = useState('');
+  const [stringList, setStringList] = useState([]);
 
-  const check = (insert1, insert2, insert3) => {
-    console.log('sum이 변경될 때만 채점...');
-    if(parseInt(insert1) + parseInt(insert2) === parseInt(insert3)) return 'correct';
-    else return 'wrong';
+  const insert = () => {
+    const newList = stringList.slice();
+    newList.push(string);
+    setStringList(newList);
   }
 
-  const result = useMemo(() => check(number1, number2, sum), [sum])
+  const sum = (list) => {
+    console.log('문자들을 합치는 중입니다...');
+    let stringSum = '';
+    for(let value of list) {
+      stringSum += value + ' ';
+    }
+    return stringSum;
+  }
+
+  const result = useMemo(() => sum(stringList), [stringList]);
 
   return (
     <div>
-      <input onChange={(e) => {setNumber1(e.target.value)}} /> + <input onChange={(e) => {setNumber2(e.target.value)}} /> = <input onChange={(e) => {setSum(e.target.value)}} />
+      <input type='text' onChange={(e) => {setString(e.target.value)}}/>
+      <button onClick={insert}>문자열 추가</button>
       {result}
     </div>
   )
 }
 
 const UseCallbackExample = () => {
+  const [string, setString] = useState('');
+  const [stringList, setStringList] = useState([]);
+
+  const change = useCallback((e) => {
+    setString(e.target.value);
+  }, []);
+
+  const insert = useCallback(() => {
+    const newList = stringList.slice();
+    newList.push(string);
+    setStringList(newList);
+  }, [string, stringList]);
+
+  const sum = useCallback((list) => {
+    console.log('문자들을 합치는 중입니다...');
+    let stringSum = '';
+    for(let value of list) {
+      stringSum += value + ' ';
+    }
+    return stringSum;
+  }, []);
+
+  const result = useMemo(() => sum(stringList), [stringList, sum]);
+
   return (
     <div>
-
+      <input type='text' onChange={change}/>
+      <button onClick={insert}>문자열 추가</button>
+      {result}
     </div>
   )
 }
