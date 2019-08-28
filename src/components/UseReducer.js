@@ -2,23 +2,20 @@ import React, {useReducer} from 'react';
 
 const reducer = (state, action) => {
     switch(action.type) {
-        case 'INCREASE':
-            return state + 1;
-        case 'DECREASE':
-            return state - 1;
+        case 'CHANGE':
+            return action.value;
         default:
             return state;
     }
 }
 
 const UseReducer = () => {
-    const [state, dispatch] = useReducer(reducer, 0);
+    const [state, dispatch] = useReducer(reducer, 'initial state');
 
     return (
         <div>
             <h3>{state}</h3>
-            <button onClick={() => dispatch({type: 'INCREASE'})}>increase</button>
-            <button onClick={() => dispatch({type: 'DECREASE'})}>decrease</button>
+            <input type='text' value={state} onChange={(e) => dispatch({value: e.target.value, type: 'CHANGE'})} />
         </div>
     )
 }
