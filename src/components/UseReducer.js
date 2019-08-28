@@ -14,6 +14,7 @@ const UseReducer = () => {
 
     return (
         <div>
+            <h1>useReducer</h1>
             <h3>{state}</h3>
             <input type='text' value={state} onChange={(e) => dispatch({value: e.target.value, type: 'CHANGE'})} />
         </div>

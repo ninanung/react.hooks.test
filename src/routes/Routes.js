@@ -8,6 +8,7 @@ import UseMemo from '../components/UseMemo';
 import UseRef from '../components/UseRef';
 import UseContext from '../components/UseContext';
 import UseReducer from '../components/UseReducer';
+import CustomHooks from '../components/CustomHooks';
 
 const Routes = {
     '/': () => <Home />,
@@ -18,6 +19,7 @@ const Routes = {
     '/useref': () => <UseRef />,
     '/usecontext': () => <UseContext />,
     '/usereducer': () => <UseReducer />,
+    '/customhooks': () => <CustomHooks />,
 }
 
 export default Routes;
