@@ -11,6 +11,7 @@ const Home = () => {
             <h3><A href='/usememo'>4. useMemo</A></h3>
             <h3><A href='/usecallback'>5. useCallback</A></h3>
             <h3><A href='/useref'>6. useRef</A></h3>
+            <h3><A href='/usereducer'>7. useReducer</A></h3>
         </div>
     )
 }
